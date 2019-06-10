@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wls-deployment
+  labels:
+    app: wls-app-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wls-app
+  template:
+    metadata:
+      labels:
+        app: wls-app
+    spec:
+      containers:
+      - name: wls-standalone-app
+        image: wls-standalone-app:latest
+        ports:
+        - containerPort: 7001
+        - containerPort: 9002
